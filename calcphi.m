@@ -23,4 +23,13 @@ for k = 0:n
     end
     H = impyramid(H, 'reduce');
 end
+end
 
+
+function [dx, dy] = centraldiff(img)
+    dx = zeros(size(img));
+    dx(:, 2:end - 1) = (img(:, 3:end) - img(:, 1:end - 2)) / 2.0;
+    dy = zeros(size(img));
+    dy(2:end - 1, :) = (img(3:end, :) - img(1:end - 2, :)) / 2.0;
+
+end
