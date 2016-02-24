@@ -18,6 +18,9 @@ for k = 0:n
     Ysamples = Y(1:2^k:end) + 2^k / 2 - 0.5;
     phitmp = interp2(Xsamples, Ysamples, p, X, Y, 'spline');
     phi = phi .* phitmp;
+    if mod(size(H, 1), 2) ~= 0 || mod(size(H, 2), 2) ~= 0
+        error('Cannot reduce image further. Reduce n or change image size');
+    end
     H = impyramid(H, 'reduce');
 end
 
